@@ -36,4 +36,4 @@ jobs:
       with:
           context: .
           push: true
-          tags: vovantrong/social-server:latest
+          tags: vovantrong/social-frontend:latest
