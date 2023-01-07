@@ -1,0 +1,71 @@
+@import '../../../shared/variable.scss';
+
+.post-loading {
+  display: flex;
+  align-items: center;
+  gap: 0 20px;
+}
+
+.post-loading-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.info-loading {
+  display: flex;
+  align-items: center;
+  gap: 0 10px;
+  padding: 10px 20px;
+  min-width: 300px;
+  min-height: 60px;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.friend-loading {
+  display: flex;
+  align-items: center;
+  gap: 0 20px;
+  box-shadow: -1px 2px 5px 0px rgba(89, 80, 80, 0.64);
+  -webkit-box-shadow: -1px 2px 5px 0px rgba(89, 80, 80, 0.64);
+  -moz-box-shadow: -1px 2px 5px 0px rgba(89, 80, 80, 0.64);
+}
+
+.story-loading {
+  width: 290px;
+  height: 500px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  .story-loading-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+  }
+
+  &.dark {
+    background-color: $bg-dark-mode;
+  }
+}
+
+@media screen and (min-width: $tablet-screen) {
+  .story-loading {
+    width: 350px;
+    height: 600px;
+  }
+}
+@media screen and (min-width: $ipad-screen) {
+  .story-loading {
+    width: 380px;
+    height: 650px;
+  }
+}
+@media screen and (min-width: $laptop-screen) {
+  .story-loading {
+    width: 500px;
+    height: 100%;
+  }
+}

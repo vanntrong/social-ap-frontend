@@ -1,0 +1,455 @@
+@import '../../../shared/variable.scss';
+
+.form-post {
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 5px 10px;
+  border-radius: 12px;
+  .user-image {
+    margin-right: 10px;
+  }
+  .form-post__group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    .form-post__input {
+      flex: 1;
+      width: 100%;
+      height: 40px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: #b5b5b6;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 20px;
+      // background-color: $background-color;
+    }
+    .form-post__icon {
+      margin-left: 20px;
+      color: #d3d8e0;
+      cursor: pointer;
+    }
+  }
+  .form-input__image {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    .form-input-activity {
+      flex-basis: 33.33%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0 10px;
+      padding: 5px;
+      cursor: pointer;
+      border-radius: 10px;
+      &:hover {
+        background-color: #f5f5f5;
+      }
+    }
+    span {
+      display: none;
+    }
+  }
+}
+
+.form-post-modal {
+  position: fixed;
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  border-radius: 10px;
+  animation: fadeIn 0.5s ease-in-out;
+  .form-post-title {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    h2 {
+      flex: 1;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+  hr {
+    border: 0;
+    border-bottom: 1px solid #d3d8e0;
+  }
+  .form-post-feature {
+    padding: 10px;
+    .form-post-user {
+      display: flex;
+      align-items: center;
+      gap: 0 10px;
+      margin-bottom: 20px;
+
+      h3 {
+        font-weight: 600;
+      }
+
+      .form-post-audience {
+        display: flex;
+        align-items: center;
+        gap: 0 4px;
+        margin-top: 5px;
+        padding: 6px 4px;
+        border-radius: 4px;
+        background-color: rgba($color: #000000, $alpha: 0.2);
+        cursor: pointer;
+        width: max-content;
+        p {
+          text-transform: capitalize;
+          font-weight: 600;
+          font-size: 14px;
+        }
+      }
+    }
+    .form-post-content {
+      textarea {
+        max-height: 300px;
+        overflow-y: auto;
+        padding-right: 10px;
+        display: block;
+        width: 100%;
+        min-height: 80px;
+        line-height: 20px;
+        font-size: 16px;
+        letter-spacing: 0.5px;
+        resize: none;
+        border: none;
+        outline: none;
+        &::placeholder {
+          font-size: 20px;
+        }
+        /* width */
+        &::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+          border-radius: 8px;
+          background: #f1f1f1;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+          border-radius: 8px;
+          background: #bdbdbd;
+        }
+      }
+    }
+    .emoji-picker {
+      position: relative;
+      text-align: right;
+    }
+    .form-post-assets {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      border: 1px solid #d3d8e0;
+      border-radius: 10px;
+      h4 {
+        font-size: 16px;
+        font-weight: 500;
+      }
+      .form-post-assets-item {
+        display: flex;
+        align-items: center;
+        gap: 0 12px;
+      }
+    }
+    .form-post-submit {
+      margin-top: 20px;
+      width: 100%;
+      height: 40px;
+      background-color: $blue-500;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      &:hover {
+        background-color: $blue-color-300;
+      }
+      &:disabled {
+        cursor: not-allowed;
+        background-color: #d3d8e0;
+        color: #bdbdbd;
+      }
+    }
+  }
+  &.dark {
+    background-color: $bg-dark-mode-2;
+    box-shadow: none;
+    .form-post-title h2 {
+      color: white;
+    }
+    .form-post-close {
+      background-color: $bg-dark-mode;
+    }
+    hr {
+      border-bottom: 1px solid white;
+    }
+    .form-post-user-info {
+      color: white;
+    }
+
+    .form-post-feature {
+      .form-post-assets {
+        border: 1px solid white;
+        h4 {
+          color: white;
+        }
+      }
+      .form-post-content textarea {
+        color: white;
+        background-color: $bg-dark-mode;
+        &::placeholder {
+          color: white;
+        }
+      }
+
+      .form-post-submit {
+        color: white;
+        background-color: $bg-dark-mode;
+        &:disabled {
+          opacity: 0.1;
+        }
+      }
+    }
+  }
+}
+
+.inputPostSearchPeople {
+  position: fixed;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 5px 10px;
+  border-radius: 12px;
+  width: 280px;
+  height: 400px;
+
+  .inputPostSearchPeople-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #d3d8e0;
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: $text-gray-900;
+    }
+    .inputPostSearchPeople-top-close {
+      background-color: $bg-gray-light;
+      color: $text-gray-700;
+      cursor: pointer;
+      &:hover {
+        background-color: $bg-gray;
+      }
+    }
+  }
+  .inputPostSearchPeople-center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0 10px;
+
+    .inputPostSearchPeople-input {
+      flex: 1;
+      background-color: $bg-gray;
+      height: 40px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 0 5px;
+      padding: 10px;
+      color: $text-gray-700;
+      font-size: 20px;
+
+      input {
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        font-size: 14px;
+      }
+    }
+
+    .inputPostSearchPeople-button {
+      width: 80px;
+      height: 40px;
+      font-size: 16px;
+      color: $blue-color-300;
+      font-weight: 600;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+  .inputSearchPeopleResults {
+    padding-top: 15px;
+    p {
+      font-size: 16px;
+      font-weight: 600;
+      color: $text-gray-500;
+      text-align: center;
+    }
+    .tagPeople-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid $border-color;
+      padding: 10px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      width: 100%;
+      background-color: white;
+      transition: all 0.3s ease-in-out;
+
+      .tagPeople-item {
+        color: $text-gray-700;
+        font-weight: 600;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0 5px;
+        border-radius: inherit;
+
+        .tagPeople-item-avatar {
+          position: relative;
+        }
+
+        button {
+          color: inherit;
+          font-weight: inherit;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          position: absolute;
+          top: 0;
+          right: 0;
+          z-index: 99;
+          background: red;
+          transform: translate(10px, -5px);
+          background-color: white;
+        }
+
+        h4 {
+          font-size: 14px;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+  .inputPostSearchPeople-button-add {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    right: 0;
+    width: calc(100% - 20px);
+    height: 40px;
+    background-color: $border-color;
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    color: $text-gray-900;
+    &:hover {
+      background-color: $bg-greylight;
+    }
+    &:disabled {
+      cursor: not-allowed;
+      background-color: #d3d8e0;
+      color: #bdbdbd;
+    }
+  }
+
+  &.dark {
+    background-color: $bg-dark-mode;
+    box-shadow: none;
+
+    .inputPostSearchPeople-top {
+      h3 {
+        color: white;
+      }
+      .inputPostSearchPeople-top-close {
+        background-color: $bg-dark-mode-2;
+      }
+    }
+
+    .result {
+      &:hover {
+        background-color: $bg-dark-mode-2;
+      }
+      .result-info {
+        color: white;
+      }
+    }
+
+    .inputSearchPeopleResults .tagPeople-list {
+      border: none;
+      background-color: $bg-dark-mode-2;
+      .tagPeople-item h4 {
+        color: white;
+      }
+    }
+
+    .inputPostSearchPeople-center .inputPostSearchPeople-input {
+      background-color: $bg-dark-mode-2;
+      input {
+        color: white;
+        &::placeholder {
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media screen and (min-width: $ipad-screen) {
+  .form-post-modal {
+    width: 500px;
+  }
+  .inputPostSearchPeople {
+    width: 500px;
+    height: 600px;
+  }
+}

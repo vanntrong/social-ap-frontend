@@ -1,0 +1,32 @@
+@import '../../../../shared/variable.scss';
+.result {
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px;
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(207, 206, 206);
+  }
+
+  .result-info {
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+    font-size: 15px;
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    width: 100%;
+  }
+
+  &.dark {
+    .result-info {
+      color: white;
+    }
+    &:hover {
+      background-color: $bg-dark-mode-2;
+    }
+  }
+}
