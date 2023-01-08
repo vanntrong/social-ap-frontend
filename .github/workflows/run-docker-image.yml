@@ -15,10 +15,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: pull docker image
-      run: sudo docker pull vovantrong/social-frontend:latest
+      run: docker pull vovantrong/social-frontend:latest
       
     - name: stop docker container
-      run: sudo docker stop social-frontend || true && sudo docker rm social-frontend || true
+      run: docker stop social-frontend || true && docker rm social-frontend || true
       
     - name: run docker image
-      run: sudo docker run -p 3000:80/tcp -d --name social-frontend vovantrong/social-frontend:latest
+      run: docker run -p 3000:80/tcp -d --name social-frontend vovantrong/social-frontend:latest
