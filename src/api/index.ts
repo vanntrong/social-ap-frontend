@@ -1,8 +1,9 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import jwt_decode from 'jwt-decode';
 import queryString from 'query-string';
+import { getToken, removeToken, setToken } from 'utils/token';
 
-const access_token = localStorage.getItem('token');
+const access_token = getToken('token');
 
 //axios no header used with login and register
 export const axiosAuthClient = axios.create({
@@ -37,23 +38,36 @@ if (access_token) {
   axiosClient.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
 }
 
+let isRefreshing = false;
+
 axiosClient.interceptors.request.use(
   async (config: AxiosRequestConfig) => {
-    const currentDate = new Date();
+    if (isRefreshing) {
+      return config;
+    }
     try {
       if (access_token) {
+        const currentDate = new Date();
         const decodedToken = jwt_decode<any>(access_token);
         if (decodedToken.exp * 1000 < currentDate.getTime()) {
-          const refresh_token = localStorage.getItem('refresh_token');
+          isRefreshing = true;
+          const refresh_token = getToken('refresh_token');
           const newToken = await refreshAccessToken(refresh_token);
           if (config.headers === undefined) {
             config.headers = {};
           }
+
+          setToken('token', newToken);
           config.headers['Authorization'] = 'Bearer ' + newToken;
+          isRefreshing = false;
         }
       }
     } catch (error) {
-      console.log(error);
+      isRefreshing = false;
+      window.location.href = '/login';
+      removeToken('token');
+      removeToken('refresh_token');
+      throw new Error(error);
     }
     return config;
   },
@@ -74,11 +88,11 @@ axiosClient.interceptors.response.use(
   }
 );
 
-const refreshAccessToken = async (refreshToken: string | null): Promise<AxiosResponse> => {
-  const access_token = await axios.post(
-    `${process.env.REACT_APP_API_URL}/token/${refreshToken}/refresh`
-  );
-  return access_token.data;
+const refreshAccessToken = async (refreshToken: string | null): Promise<string> => {
+  const access_token = await axiosAuthClient.post<string, string>(`/token/refresh`, {
+    refreshToken,
+  });
+  return access_token;
 };
 
 export default axiosClient;
