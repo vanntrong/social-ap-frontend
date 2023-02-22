@@ -21,4 +21,4 @@ jobs:
       run: sudo docker stop social-frontend || true && sudo docker rm social-frontend || true
       
     - name: run docker image
-      run: sudo docker run -p 3000:80/tcp -d --name social-frontend -e REACT_APP_API_URL=${{secrets.REACT_APP_API_URL}} vovantrong/social-frontend:latest
+      run: sudo docker run -p 3000:80/tcp -d --name social-frontend vovantrong/social-frontend:latest
