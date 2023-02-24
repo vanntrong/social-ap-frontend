@@ -7,7 +7,7 @@ const access_token = getToken('token');
 
 //axios no header used with login and register
 export const axiosAuthClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: 'https://social-app-api.vovantrong.online',
   headers: {
     'content-type': 'application/json',
   },
@@ -27,7 +27,7 @@ axiosAuthClient.interceptors.response.use(
 
 //axios with header used with all other requests
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: 'https://social-app-api.vovantrong.online',
   headers: {
     'content-type': 'application/json',
   },
