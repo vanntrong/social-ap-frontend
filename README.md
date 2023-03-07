@@ -19,8 +19,8 @@ This is a frontend part, if you want to see backend part please visit [https://g
 ## Technologies used
 
 - [x] ReactJS
-- [x] Typescript
-- [x] Scss
+- [x] TypeScript
+- [x] SCSS
 - [x] Material UI
 - [x] Redux
 - [x] SocketIO
